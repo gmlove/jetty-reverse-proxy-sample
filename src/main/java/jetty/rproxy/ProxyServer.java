@@ -40,6 +40,7 @@ public class ProxyServer implements CommandLineRunner
     SocketConnector connector = new SocketConnector();
     connector.setHost("0.0.0.0");
     connector.setPort(port);
+    connector.setRequestHeaderSize(1024 * 1024);
 
     server.setConnectors(new Connector[]{connector});
 
