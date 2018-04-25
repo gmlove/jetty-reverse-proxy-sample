@@ -34,12 +34,12 @@ import org.eclipse.jetty.servlets.ProxyServlet;
 @SpringBootApplication
 public class ProxyServer implements CommandLineRunner
 {
-  public static void reverseProxy(String url) throws Exception{
+  public static void reverseProxy(int port, String url) throws Exception{
     Server server = new Server();
 
     SocketConnector connector = new SocketConnector();
     connector.setHost("0.0.0.0");
-    connector.setPort(8888);
+    connector.setPort(port);
 
     server.setConnectors(new Connector[]{connector});
 
@@ -59,7 +59,7 @@ public class ProxyServer implements CommandLineRunner
 
   @Override
   public void run(String... args)  throws Exception {
-    reverseProxy(args[0]);
+    reverseProxy(Integer.parseInt(args[0]), args[1]);
   }
 
   public static void main(String[] args) throws Exception {
